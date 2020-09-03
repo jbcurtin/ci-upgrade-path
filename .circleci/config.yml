@@ -7,22 +7,22 @@ executors:
     working_directory: ~/repo
 
 jobs:
-    Build_JDAT_Notebooks:
-        executor: notebook-executor
-        environment:
-            PYTHONPATH: ./.circleci
-        steps:
-            - checkout
-            - run:
-                name: Setup Environment
-                command: bash ./.circleci/setup_env.sh
-            - run:
-                name: Build Notebooks
-                command: python ./.circleci/builder/factory.py -c jdat_notebooks
+  Build_JDAT_Notebooks:
+    executor: notebook-executor
+    environment:
+      PYTHONPATH: ./.circleci
+    steps:
+      - checkout
+      - run:
+        name: Setup Environment
+        command: bash ./.circleci/setup_env.sh
+      - run:
+        name: Build Notebooks
+        command: python ./.circleci/builder/factory.py -c jdat_notebooks
 
 workflows:
   version: 2.1
 
   build-deploy:
     jobs:
-        - Build_JDAT_Notebooks
+      - Build_JDAT_Notebooks
