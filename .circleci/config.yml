@@ -19,6 +19,8 @@ jobs:
             - run:
                 name: Build Notebooks
                 command: python ./.circleci/builder/factory.py -c jdat_notebooks
+            - store_artifacts:
+                path: /tmp/artifacts/html-files
 
     Deploy_Notebooks:
         executor: notebook-executor

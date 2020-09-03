@@ -3,7 +3,7 @@
 import argparse
 
 from builder.github import scan_pull_requests_for_failures
-from builder.service import find_build_jobs, run_build, setup_build
+from builder.service import find_build_jobs, run_build, setup_build, consolidate_artifacts
 
 def obtain_options() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
@@ -30,6 +30,7 @@ def main(options: argparse.Namespace) -> None:
         for build_job in find_build_jobs(options.notebook_collection_paths):
             setup_build(build_job)
             run_build(build_job)
+            consolidate_artifacts(build_job)
 
 if __name__ == '__main__':
     options = obtain_options()
