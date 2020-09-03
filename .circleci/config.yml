@@ -7,44 +7,43 @@ executors:
     working_directory: ~/repo
 
 jobs:
-    Build_JDAT_Notebooks:
-        executor: notebook-executor
-        environment:
-            PYTHONPATH: ./.circleci
-        steps:
-            - checkout
-            - run:
-                name: Setup Environment
-                command: bash ./.circleci/setup_env.sh
-            - run:
-                name: Build Notebooks
-                command: python ./.circleci/builder/factory.py -c jdat_notebooks
-            - run:
-                name: Collect Arifacts
-                command: echo 'one'
+  Build_JDAT_Notebooks:
+    executor: notebook-executor
+    environment:
+      PYTHONPATH: ./.circleci
+    steps:
+      - checkout
+      - run:
+        name: Setup Environment
+        command: bash ./.circleci/setup_env.sh
+      - run:
+        name: Build Notebooks
+        command: python ./.circleci/builder/factory.py -c jdat_notebooks
+      - run:
+        name: Collect Arifacts
+        command: echo 'one'
 
-    Deploy_Notebooks:
-        executor: notebook-executor
-        environment:
-            PYTHONPATH: ./.circleci
-        steps:
-            - run:
-              name: Collect HTML Pages
-              command: echo 'one'
-            - run:
-              name: Store Artifacts
-              command: echo 'two'
-            - run:
-              name: Deploy Artifacts
-              command: echo 'three'
+  Deploy_Notebooks:
+    executor: notebook-executor
+    environment:
+      PYTHONPATH: ./.circleci
+    steps:
+      - run:
+        name: Collect HTML Pages
+        command: echo 'one'
+      - run:
+        name: Store Artifacts
+        command: echo 'two'
+      - run:
+        name: Deploy Artifacts
+        command: echo 'three'
 
 workflows:
   version: 2.1
-
   build-deploy:
     jobs:
-        - Build_JDAT_Notebooks
-        - Deploy_Notebooks:
-          requires:
-            - Build_JDAT_Notebooks
+      - Build_JDAT_Notebooks
+      - Deploy_Notebooks:
+        requires:
+          - Build_JDAT_Notebooks
 
