@@ -26,14 +26,14 @@ jobs:
             PYTHONPATH: ./.circleci
         steps:
             - run:
-              name: Collect HTML Pages
-              command: echo 'one'
+                name: Collect HTML Pages
+                command: echo 'one'
             - run:
-              name: Store Artifacts
-              command: echo 'two'
+                name: Store Artifacts
+                command: echo 'two'
             - run:
-              name: Deploy Artifacts
-              command: echo 'three'
+                name: Deploy Artifacts
+                command: echo 'three'
 
 workflows:
   version: 2.1
