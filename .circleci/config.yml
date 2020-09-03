@@ -20,9 +20,26 @@ jobs:
                 name: Build Notebooks
                 command: python ./.circleci/builder/factory.py -c jdat_notebooks
 
+    Deploy_Notebooks:
+        executor: notebook-executor
+        environment:
+            PYTHONPATH: ./.circleci
+        steps:
+            - run:
+              name: Collect HTML Pages
+              command: echo 'one'
+            - run:
+              name: Store Artifacts
+              command: echo 'two'
+            - run:
+              name: Deploy Artifacts
+              command: echo 'three'
+
 workflows:
   version: 2.1
-
   build-deploy:
     jobs:
-        - Build_JDAT_Notebooks
+      - Build_JDAT_Notebooks
+      - Deploy_Notebooks:
+        requires:
+          - Build_JDAT_Notebooks
