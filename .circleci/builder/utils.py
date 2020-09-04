@@ -25,8 +25,8 @@ class Notebook(typing.NamedTuple):
     def create_build_script(self: PWN, categories: typing.List[str], build_dir: str, artifact_dir: str) -> None:
         build_script_filepath = os.path.join(build_dir, f'{self.filename}-builder.sh')
         output_dir = os.path.join(ARTIFACT_DEST_DIR, *categories)
-        metadata_path = f'{output_dir}/{self.filename}.metadata.json'
         filename = self.filename.rsplit('.', 1)[0]
+        metadata_path = f'{output_dir}/{filename}.metadata.json'
         html_path = f'{output_dir}/{filename}.html'
         build_script = f"""#!/usr/bin/env bash
 set -e

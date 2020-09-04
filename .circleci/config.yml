@@ -18,9 +18,19 @@ jobs:
                 command: bash ./.circleci/setup_env.sh
             - run:
                 name: Build Notebooks
-                command: python ./.circleci/builder/factory.py -c jdat_notebooks
-            - store_artifacts:
-                path: /tmp/artifacts/html-files
+                command: python ./.circleci/builder/factory.py -o build-notebooks -c jdat_notebooks
+
+            - run:
+                name: Build Website
+                command: python ./.circleci/builder/factory.py -o build-website
+
+                # - store_artifacts:
+                #     path: /tmp/artifacts/html-files
+                # - run:
+                #     name: "Built notebooks are available at:"
+                #     command: NB_URL="${CIRCLE_BUILD_URL}/artifacts/${CIRCLE_NODE_INDEX}/${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}/jdat_notebooks/index.html"; echo $NB_URL
+
+
 
     Deploy_Notebooks:
         executor: notebook-executor
