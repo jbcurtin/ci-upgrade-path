@@ -67,8 +67,9 @@ def main(options: argparse.Namespace) -> None:
                 if not os.path.exists(group_dirpath):
                     os.makedirs(group_dirpath)
 
-                rel_filepath = f'{group_dirpath}/{filename}.html'
-                shutil.copyfile(html_filepath, rel_filepath)
+                rel_filepath = f'{job.collection.name}/{job.category.name}/{filename}.html'
+                local_filepath = f'{group_dirpath}/{filename}.html'
+                shutil.copyfile(html_filepath, local_filepath)
                 converted_pages.append({
                     'output_file_path': rel_filepath,
                     'name': metadata['title'],
