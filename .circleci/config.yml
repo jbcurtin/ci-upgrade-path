@@ -29,7 +29,7 @@ jobs:
 
             - run:
                 name: "Built Notebooks are available at:"
-                command: NB_URL="${CIRCLE_BUILD_URL}/artifacts/${CIRCLE_NODE_INDEX}/${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}/pages/index.html"; echo $NB_URL
+                command: NB_URL="${CIRCLE_BUILD_URL}/artifacts/${CIRCLE_NODE_INDEX}/pages/index.html"; echo $NB_URL
 
                 # - store_artifacts:
                 #     path: /tmp/artifacts/html-files
