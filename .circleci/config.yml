@@ -24,6 +24,13 @@ jobs:
                 name: Build Website
                 command: python ./.circleci/builder/factory.py -o build-website
 
+            - store_artifacts:
+                path: ./pages
+
+            - run:
+                name: "Built Notebooks are available at:"
+                command: NB_URL="${CIRCLE_BUILD_URL}/artifacts/${CIRCLE_NODE_INDEX}/${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}/pages/index.html"; echo $NB_URL
+
                 # - store_artifacts:
                 #     path: /tmp/artifacts/html-files
                 # - run:
